@@ -53,21 +53,26 @@ def drawBox(img,bbox):
     cv2.rectangle(img,(x,y),((x+w),(y+h)),(255,0,255),3,1)
     cv2.putText(img,"Rastreando",(75,90),cv2.FONT_HERSHEY_SIMPLEX,0.7,(0,255,0),2)
 
-    pass
+
 
 while True:
    #escreva o código dentro do loop aqui
    check,img = video.read()
    success,bbox = tracker.update(img)   
   
-   pass
+
 
    if success:
     drawBox(img,bbox)
    else:
     cv2.putText(img,"Errou",(75,90),cv2.FONT_HERSHEY_SCRIPT_SIMPLEX,0.7,(0,0,255),2)  
 
-   goal_track(img,bbox)      
+   goal_track(img,bbox)   
+
+   cv2.imshow("video",img)
+
+   if cv2.waitKey(1) == 32: #32 é a barra de espaço
+      break   
 
 video.release()
    
